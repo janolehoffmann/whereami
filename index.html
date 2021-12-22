@@ -1,7 +1,33 @@
+<!DOCTYPE html>
 <html>
   <head>
   </head>
   <body>
-    Hello World!
+    <div id="location_text">Hello World!</div>
+    <p id="test"></p>
+
+    <script>
+      document.getElementById("test").innerHTML = "Hello there";
+      var x = document.getElementById('location_text');
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(getName);
+      } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+      
+      function getName(position) {
+        var url = "https://www.geonames.org/findNearbyPlaceName?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude;
+
+        var request = new XMLHttpRequest();
+        request.open("GET", url, false);
+        request.send();
+        var xml = request.responseXML;
+        var name = xml.getElementsByTagName("name");
+
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude + "<br>Name: " + name;
+      }
+      </script> 
+
   </body>
 </html>

@@ -19,7 +19,7 @@
       }
       
       function getName(position) {
-        var url = "http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&username=demo";
+        var url = "http://secure.geonames.org/findNearbyPostalCodesJSON?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&username=demo";
 
         $.getJSON(url, function(data) {
           x.innerHTML = "Latitude: " + position.coords.latitude +

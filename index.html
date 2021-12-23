@@ -21,7 +21,7 @@
 
         $.getJSON(url, function(data) {
           x.innerHTML = "Latitude: " + position.coords.latitude +
-          "<br>Longitude: " + position.coords.longitude + "<br>Name: " + data.name;
+          "<br>Longitude: " + position.coords.longitude + "<br>Name: " + data[0].placeName;
         });
       }
       </script> 

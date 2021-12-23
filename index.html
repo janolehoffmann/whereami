@@ -7,10 +7,8 @@
   </head>
   <body>
     <div id="location_text">Hello World!</div>
-    <p id="test"></p>
 
     <script>
-      document.getElementById("test").innerHTML = "Hello there";
       var x = document.getElementById('location_text');
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getName);

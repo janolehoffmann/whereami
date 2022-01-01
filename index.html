@@ -23,7 +23,7 @@
 
         $.getJSON(nameUrl, function(data) {
           var placeName = data.postalCodes[0].placeName;
-          x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude + "<br>Name: " + placeName;
+          x.innerHTML = "You are in " + placeName + " (Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
 
           var contentURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&origin=*&format=json&exintro=&titles=" + placeName;
           $.getJSON(contentURL, function(contentData) {

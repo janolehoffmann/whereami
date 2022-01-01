@@ -20,10 +20,9 @@
       
       function getName(position) {
         var nameUrl = "https://secure.geonames.org/findNearbyPostalCodesJSON?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&username=demo";
-        var placeName = "";
 
         $.getJSON(nameUrl, function(data) {
-          placeName = data.postalCodes[0].placeName;
+          var placeName = data.postalCodes[0].placeName;
           x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude + "<br>Name: " + placeName;
 
           var contentURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&origin=*&format=json&exintro=&titles=" + placeName;
@@ -31,6 +30,18 @@
             var query = contentData.query.pages;
             var key = Object.keys(query)[0];
             var extract = query[key].extract;
+            
+            var position = 0;
+            var result = [];
+            var searchTerm = ". " + placeName
+
+            while (extract.indexOf(searchTerm, position) != -1) {
+              var newPosition = extract.indexOf(searchTerm, position);
+              result.push(newPosition);
+              position = newPosition + 1;
+            }
+
+            console.log(result)
             y.innerHTML = "<br>" + extract;
           });
         });

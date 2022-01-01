@@ -23,7 +23,7 @@
 
         $.getJSON(nameUrl, function(data) {
           var placeName = data.postalCodes[0].placeName;
-          x.innerHTML = "You are in " + placeName + " (Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
+          x.innerHTML = "You are in " + placeName + ", " + data.postalCodes[0].countryCode + " (Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
 
           var contentURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&origin=*&format=json&exintro=&titles=" + placeName;
           $.getJSON(contentURL, function(contentData) {
@@ -35,7 +35,7 @@
             var result = [];
             var searchTerm = ". " + placeName;
 
-            //Find all sentences that start with placeName
+            //Find all sentences that start with 'placeName'
             while (extract.indexOf(searchTerm, position) != -1) {
               var newPosition = extract.indexOf(searchTerm, position);
               result.push(newPosition);
@@ -44,7 +44,7 @@
 
             var startIndex = 0;
             if (result.length != 0) {
-              //searchTerm = ". " + placeName -> start two characters later
+              //searchTerm = ". " + placeName -> start two characters after
               startIndex = result[result.length - 1] + 2;
             }
 

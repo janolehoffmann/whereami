@@ -7,11 +7,11 @@
   </head>
   <body>
     <div id="location_text">Hello World!</div>
-    <div id="fact>"></div>
+    <div id="fact"></div>
 
     <script>
       var x = document.getElementById('location_text');
-      var y = document.getElementById('fact')
+      var y = document.getElementById('fact');
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getName);
       } else {
@@ -23,18 +23,18 @@
         var placeName = "";
 
         $.getJSON(nameUrl, function(data) {
-          placeName = data.postalCodes[0].placeName
-          x.innerHTML = "Latitude: " + position.coords.latitude +
-          "<br>Longitude: " + position.coords.longitude + "<br>Name: " + placeName;
-        });
+          placeName = data.postalCodes[0].placeName;
+          x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude + "<br>Name: " + placeName;
 
-        var contentURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=" + placeName;
-        $.getJSON(contentURL, function(contentData) {
-            y.innerHTML = "<br>" + contentData.query.pages[0].extract;
+          var contentURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&origin=*&format=json&exintro=&titles=" + placeName;
+          $.getJSON(contentURL, function(contentData) {
+            var query = contentData.query.pages;
+            var key = Object.keys(query)[0];
+            var extract = query[key].extract;
+            y.innerHTML = "<br>" + extract;
+          });
         });
-
       }
       </script> 
-
   </body>
 </html>

@@ -33,16 +33,27 @@
             
             var position = 0;
             var result = [];
-            var searchTerm = ". " + placeName
+            var searchTerm = ". " + placeName;
 
+            //Find all sentences that start with placeName
             while (extract.indexOf(searchTerm, position) != -1) {
               var newPosition = extract.indexOf(searchTerm, position);
               result.push(newPosition);
               position = newPosition + 1;
             }
 
+            var startIndex = 0;
+            if (result.length != 0) {
+              //searchTerm = ". " + placeName -> start two characters later
+              startIndex = result[result.length - 1] + 2;
+            }
+
+            //get substring from start index to next period
+            var fact = extract.substring(startIndex, extract.indexOf('.', startIndex) + 1);
+            console.log(fact);
+
             console.log(result)
-            y.innerHTML = "<br>" + extract;
+            y.innerHTML = "<br> <b>Did you know? </b>" + fact;
           });
         });
       }

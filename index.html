@@ -25,7 +25,7 @@
           var placeName = data.postalCodes[0].placeName;
           x.innerHTML = "You are in " + placeName + ", " + data.postalCodes[0].countryCode + " (Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
 
-          var contentURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&origin=*&format=json&exintro=&titles=" + placeName;
+          var contentURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext&origin=*&format=json&exintro=&titles=" + placeName;
           $.getJSON(contentURL, function(contentData) {
             var query = contentData.query.pages;
             var key = Object.keys(query)[0];
@@ -53,7 +53,6 @@
             var fact = extract.substring(startIndex, extract.indexOf('.', startIndex) + 1);
             console.log(fact);
 
-            console.log(result)
             y.innerHTML = "<br> <b>Did you know? </b>" + fact;
           });
         });

@@ -44,8 +44,9 @@
 
             var startIndex = 0;
             if (result.length != 0) {
+              var index = Math.floor(Math.random() * result.length);
               //searchTerm = ". " + placeName -> start two characters after
-              startIndex = result[result.length - 1] + 2;
+              startIndex = result[index] + 2;
             }
 
             //get substring from start index to next period

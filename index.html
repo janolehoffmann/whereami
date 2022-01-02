@@ -37,6 +37,9 @@
             var result = [];
             var searchTerm = ". " + placeName;
 
+            //replace new line characters
+            extract = extract.replace(/(\r\n|\n|\r)/gm, " ");
+
             //Find all sentences that start with 'placeName'
             while (extract.indexOf(searchTerm, position) != -1) {
               var newPosition = extract.indexOf(searchTerm, position);
@@ -52,8 +55,7 @@
             }
 
             //get substring from start index to next period
-            var fact = extract.substring(startIndex, extract.indexOf('.', startIndex) + 1);
-            console.log(fact);
+            var fact = extract.substring(startIndex, extract.indexOf('. ', startIndex) + 1);
 
             y.innerHTML = "<br> <b>Did you know? </b>" + fact;
           });

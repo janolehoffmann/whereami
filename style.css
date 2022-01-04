@@ -1,0 +1,16 @@
+body {
+    background-color:#8D99AE;
+    color:#FFFFFF;
+    text-align:center;
+    font-family: 'Didact Gothic';
+    font-size: 22px;
+  }
+div {
+    background-color: #2B2D42;
+    margin-bottom:15px;
+    border-bottom: solid #F8F32B;
+    border-radius: 7px;
+  }
+a {
+    color: #FFFFFF;
+}

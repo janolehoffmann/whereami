@@ -45,9 +45,9 @@ function getName(position) {
             //get substring from start index to next period
             var fact = extract.substring(startIndex, extract.indexOf('. ', startIndex) + 1);
 
-            y.innerHTML = "<br> <b>Did you know? </b>" + fact;
+            y.innerHTML = "<b>Did you know? </b>" + fact;
         });
 
-        z.innerHTML = '<br><a href="https://www.google.de/maps/place/' + placeName + '" target="_blank">Find your way home!</a>';
+        z.innerHTML = '<a href="https://www.google.de/maps/place/' + placeName + '" target="_blank">Find your way home!</a>';
     });
 }

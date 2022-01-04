@@ -1,5 +1,5 @@
 body {
-    background-color:#8D99AE;
+    background-color:#E9E9E9;
     color:#FFFFFF;
     text-align:center;
     font-family: 'Didact Gothic';
@@ -8,7 +8,7 @@ body {
 div {
     background-color: #2B2D42;
     margin-bottom:15px;
-    border-bottom: solid #F8F32B;
+    border-bottom: solid #BC2E69;
     border-radius: 7px;
   }
 a {

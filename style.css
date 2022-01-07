@@ -21,8 +21,12 @@ a {
 .row {
   display: flex;
 }
-
 .column {
   flex: 50%;
   margin: 0.5em;
+}
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column;
+  }
 }

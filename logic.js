@@ -13,7 +13,7 @@ function getName(position) {
 
     $.getJSON(nameUrl, function (data) {
         var placeName = data.postalCodes[0].placeName;
-        x.innerHTML = "You are in " + placeName + ", " + data.postalCodes[0].countryCode + " (Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
+        x.innerHTML = "<h2>You are in " + placeName + ", " + data.postalCodes[0].countryCode + "</h2>(Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
 
         var contentURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext&origin=*&format=json&exintro=&titles=" + placeName;
         $.getJSON(contentURL, function (contentData) {
@@ -45,7 +45,7 @@ function getName(position) {
             //get substring from start index to next period
             var fact = extract.substring(startIndex, extract.indexOf('. ', startIndex) + 1);
 
-            y.innerHTML = "<b>Did you know? </b>" + fact;
+            y.innerHTML = "<b>Did you know? </b><br>" + fact;
         });
 
         z.innerHTML = '<a href="https://www.google.de/maps/place/' + placeName + '" target="_blank">Find your way home!</a>';

@@ -14,3 +14,7 @@ body {
 a {
     color: #FFFFFF;
 }
+.error {
+  color: lightcoral;
+  display: inline;
+}

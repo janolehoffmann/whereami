@@ -5,7 +5,7 @@ body {
     font-family: 'Didact Gothic';
     font-size: 22px;
   }
-div {
+.content {
     background-color: #2B2D42;
     margin-bottom:15px;
     border-bottom: solid #BC2E69;

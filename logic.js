@@ -1,6 +1,5 @@
 var locationDiv = document.getElementById('location');
-var factDiv = document.getElementById('fact');
-var homeDiv = document.getElementById('home');
+var tableDiv = document.getElementById('table');
 
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(processLocation);
@@ -27,13 +26,12 @@ function processLocation(position) {
             }
 
             var fact = findFact(extract, placeName);
-            factDiv.innerHTML = '<div class="content"><b>Did you know? </b><br>' + fact + '</div>';
+            tableDiv.innerHTML += '<div class="content column"><b>Did you know? </b><br>' + fact + '</div>';
+            tableDiv.innerHTML += '<div class="content column"><a href="https://www.google.de/maps/place/' + placeName + '" target="_blank">Find your way home!</a></div>';
         })
         .fail(function () {
             displayFactError();
         });
-
-        homeDiv.innerHTML = '<div class="content"><a href="https://www.google.de/maps/place/' + placeName + '" target="_blank">Find your way home!</a></div>';
     })
     .fail(function () {
         locationDiv.innerHTML = '<span class="error">Sorry, could not find your location<span>';
@@ -64,9 +62,8 @@ function findFact(extract, placeName) {
 
     //get substring from start index to next period
     return extract.substring(startIndex, extract.indexOf('. ', startIndex) + 1);
-
 }
 
 function displayFactError() {
-    factDiv.innerHTML = '<div class="content"><span class="error">Sorry, could not find a fact for your location<span></div>';
+    tableDiv.innerHTML += '<div class="content column"><span class="error">Sorry, could not find a fact for your location<span></div>';
 }

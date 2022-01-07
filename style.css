@@ -18,3 +18,11 @@ a {
   color: lightcoral;
   display: inline;
 }
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  margin: 0.5em;
+}

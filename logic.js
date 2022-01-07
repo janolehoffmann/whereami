@@ -1,11 +1,11 @@
-var x = document.getElementById('location_text');
-var y = document.getElementById('fact');
-var z = document.getElementById('home');
+var locationDiv = document.getElementById('location');
+var factDiv = document.getElementById('fact');
+var homeDiv = document.getElementById('home');
 
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(processLocation);
 } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    locationDiv.innerHTML = "Geolocation is not supported by this browser.";
 }
 
 function processLocation(position) {
@@ -13,7 +13,7 @@ function processLocation(position) {
 
     $.getJSON(nameUrl, function (data) {
         var placeName = data.postalCodes[0].placeName;
-        x.innerHTML = "<h2>You are in " + placeName + ", " + data.postalCodes[0].countryCode + "</h2>(Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
+        locationDiv.innerHTML = "<h2>You are in " + placeName + ", " + data.postalCodes[0].countryCode + "</h2>(Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
 
         var contentURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext&origin=*&format=json&exintro=&titles=" + placeName;
         $.getJSON(contentURL, function (contentData) {
@@ -27,16 +27,16 @@ function processLocation(position) {
             }
 
             var fact = findFact(extract, placeName);
-            y.innerHTML = '<div class="content"><b>Did you know? </b><br>' + fact + '</div>';
+            factDiv.innerHTML = '<div class="content"><b>Did you know? </b><br>' + fact + '</div>';
         })
         .fail(function () {
             displayFactError();
         });
 
-        z.innerHTML = '<div class="content"><a href="https://www.google.de/maps/place/' + placeName + '" target="_blank">Find your way home!</a></div>';
+        homeDiv.innerHTML = '<div class="content"><a href="https://www.google.de/maps/place/' + placeName + '" target="_blank">Find your way home!</a></div>';
     })
     .fail(function () {
-        x.innerHTML = '<span class="error">Sorry, could not find your location<span>';
+        locationDiv.innerHTML = '<span class="error">Sorry, could not find your location<span>';
     });
 }
 
@@ -68,5 +68,5 @@ function findFact(extract, placeName) {
 }
 
 function displayFactError() {
-    y.innerHTML = '<div class="content"><span class="error">Sorry, could not find a fact for your location<span></div>';
+    factDiv.innerHTML = '<div class="content"><span class="error">Sorry, could not find a fact for your location<span></div>';
 }

@@ -8,7 +8,6 @@ if (navigator.geolocation) {
 }
 
 function processLocation(position) {
-    console.log('in process');
     var nameUrl = "https://secure.geonames.org/findNearbyPostalCodesJSON?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&username=demo";
 
     $.getJSON(nameUrl, function (data) {

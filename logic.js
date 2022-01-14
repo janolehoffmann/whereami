@@ -2,12 +2,13 @@ var locationDiv = document.getElementById('location');
 var tableDiv = document.getElementById('table');
 
 if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(processLocation);
+    navigator.geolocation.getCurrentPosition(processLocation, displayLocationError);
 } else {
-    locationDiv.innerHTML = "Geolocation is not supported by this browser.";
+    displayLocationError();
 }
 
 function processLocation(position) {
+    console.log('in process');
     var nameUrl = "https://secure.geonames.org/findNearbyPostalCodesJSON?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&username=demo";
 
     $.getJSON(nameUrl, function (data) {
@@ -34,7 +35,7 @@ function processLocation(position) {
         });
     })
     .fail(function () {
-        locationDiv.innerHTML = '<span class="error">Sorry, could not find your location<span>';
+        displayLocationError();
     });
 }
 
@@ -62,6 +63,10 @@ function findFact(extract, placeName) {
 
     //get substring from start index to next period
     return extract.substring(startIndex, extract.indexOf('. ', startIndex) + 1);
+}
+
+function displayLocationError() {
+    locationDiv.innerHTML = '<span class="error">Sorry, could not find your location<span>';
 }
 
 function displayFactError() {

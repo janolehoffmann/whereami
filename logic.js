@@ -12,7 +12,8 @@ function processLocation(position) {
 
     $.getJSON(nameUrl, function (data) {
         var placeName = data.postalCodes[0].placeName;
-        locationDiv.innerHTML = "<h2>You are in " + placeName + ", " + data.postalCodes[0].countryCode + "</h2>(Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
+        let regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
+        locationDiv.innerHTML = "<h2>You are in " + placeName + ", " + regionNames.of(data.postalCodes[0].countryCode) + "</h2>(Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
 
         var contentURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext&origin=*&format=json&exintro=&titles=" + placeName;
         $.getJSON(contentURL, function (contentData) {
